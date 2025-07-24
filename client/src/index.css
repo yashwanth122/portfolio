@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+  
+  /* Custom motion graphics theme colors */
+  --neon-blue: hsl(195, 100%, 50%);
+  --neon-purple: hsl(258, 90%, 66%);
+  --neon-orange: hsl(25, 95%, 53%);
+  --dark-bg: hsl(0, 0%, 4%);
+  --dark-secondary: hsl(0, 0%, 10%);
+  --dark-tertiary: hsl(0, 0%, 16%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-inter antialiased bg-dark-bg text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .gradient-text {
+    background: linear-gradient(45deg, hsl(195, 100%, 50%), hsl(258, 90%, 66%), hsl(25, 95%, 53%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .neon-glow:hover {
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.8);
+    transition: box-shadow 0.3s ease;
+  }
+}
+
+@layer utilities {
+  .text-neon-blue {
+    color: hsl(195, 100%, 50%);
+  }
+  
+  .text-neon-purple {
+    color: hsl(258, 90%, 66%);
+  }
+  
+  .text-neon-orange {
+    color: hsl(25, 95%, 53%);
+  }
+  
+  .bg-neon-blue {
+    background-color: hsl(195, 100%, 50%);
+  }
+  
+  .bg-neon-purple {
+    background-color: hsl(258, 90%, 66%);
+  }
+  
+  .bg-neon-orange {
+    background-color: hsl(25, 95%, 53%);
+  }
+  
+  .bg-dark-bg {
+    background-color: hsl(0, 0%, 4%);
+  }
+  
+  .bg-dark-secondary {
+    background-color: hsl(0, 0%, 10%);
+  }
+  
+  .bg-dark-tertiary {
+    background-color: hsl(0, 0%, 16%);
+  }
+  
+  .border-neon-blue {
+    border-color: hsl(195, 100%, 50%);
+  }
+  
+  .border-neon-purple {
+    border-color: hsl(258, 90%, 66%);
+  }
+  
+  .border-neon-orange {
+    border-color: hsl(25, 95%, 53%);
+  }
+
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+}
