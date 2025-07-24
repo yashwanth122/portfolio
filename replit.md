@@ -54,6 +54,7 @@ Preferred communication style: Simple, everyday language.
 
 ### Backend Structure
 - Route registration system in `server/routes.ts`
+- Contact form API endpoint with Telegram integration
 - Storage interface with CRUD operations
 - In-memory storage implementation for development
 - Vite middleware integration for development
@@ -87,6 +88,10 @@ Preferred communication style: Simple, everyday language.
 - **framer-motion**: Animation library
 - **react-hook-form**: Form handling
 - **zod**: Schema validation
+
+### Integrations
+- **Telegram Bot API**: Contact form messages sent directly to user's Telegram
+- **Environment Secrets**: TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID for secure messaging
 
 ### UI Dependencies
 - **@radix-ui/***: Headless UI components

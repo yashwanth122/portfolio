@@ -6,17 +6,52 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
+import { contactFormSchema, type ContactForm } from "@shared/schema";
 import AnimatedCar from "./animated-car";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    subject: "",
     message: "",
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+
+  // Mutation for sending contact form
+  const contactMutation = useMutation({
+    mutationFn: async (data: ContactForm) => {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || "Failed to send message");
+      }
+
+      return response.json();
+    },
+    onSuccess: () => {
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for your message. I'll get back to you soon!",
+      });
+      setFormData({ name: "", email: "", message: "" });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
 
   const contactInfo = [
     {
@@ -50,18 +85,22 @@ export default function ContactSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    
+    // Validate form data
+    const result = contactFormSchema.safeParse(formData);
+    
+    if (!result.success) {
+      const firstError = result.error.errors[0];
+      toast({
+        title: "Validation Error",
+        description: firstError.message,
+        variant: "destructive",
+      });
+      return;
+    }
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for your message. I'll get back to you soon!",
-    });
-
-    setFormData({ name: "", email: "", subject: "", message: "" });
-    setIsSubmitting(false);
+    // Send the message
+    contactMutation.mutate(result.data);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -163,18 +202,7 @@ export default function ContactSection() {
                   </div>
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium mb-2">Subject</label>
-                  <Input
-                    type="text"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    placeholder="Project Collaboration"
-                    required
-                    className="bg-dark-tertiary border-gray-600 focus:border-neon-blue"
-                  />
-                </div>
+
 
                 <div>
                   <label className="block text-sm font-medium mb-2">Message</label>
@@ -191,10 +219,10 @@ export default function ContactSection() {
 
                 <Button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={contactMutation.isPending}
                   className="w-full bg-gradient-to-r from-neon-blue to-neon-purple hover:scale-105 transition-all duration-300 neon-glow"
                 >
-                  {isSubmitting ? "Sending..." : (
+                  {contactMutation.isPending ? "Sending..." : (
                     <>
                       <Send className="mr-2" size={16} />
                       Send Message
