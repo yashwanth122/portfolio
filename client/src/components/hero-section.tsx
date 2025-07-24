@@ -4,13 +4,31 @@ import TypingAnimation from "./typing-animation";
 
 export default function HeroSection() {
   const floatingElements = [
-    { delay: 0, size: "w-4 h-4", color: "bg-neon-blue", position: "top-20 left-10" },
-    { delay: 2, size: "w-6 h-6", color: "bg-neon-purple", position: "top-40 right-20" },
-    { delay: 4, size: "w-3 h-3", color: "bg-neon-orange", position: "bottom-20 left-20" },
+    {
+      delay: 0,
+      size: "w-4 h-4",
+      color: "bg-neon-blue",
+      position: "top-20 left-10",
+    },
+    {
+      delay: 2,
+      size: "w-6 h-6",
+      color: "bg-neon-purple",
+      position: "top-40 right-20",
+    },
+    {
+      delay: 4,
+      size: "w-3 h-3",
+      color: "bg-neon-orange",
+      position: "bottom-20 left-20",
+    },
   ];
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section
+      id="home"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden"
+    >
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
@@ -60,8 +78,14 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <TypingAnimation 
-phrases={["Frontend Developer", "Creative Enthusiast"]}
+            <TypingAnimation
+              phrases={[
+                "Motion Graphics Editor",
+                "Creative Developer",
+                "UI/UX Designer",
+                "Animation Specialist",
+                "Full Stack Developer",
+              ]}
             />
           </motion.p>
 
@@ -71,7 +95,9 @@ phrases={["Frontend Developer", "Creative Enthusiast"]}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            Crafting visual stories through code and creativity. Specialized in bringing ideas to life with cutting-edge technology and stunning visuals.
+            Crafting visual stories through code and creativity. Specialized in
+            bringing ideas to life with cutting-edge technology and stunning
+            visuals.
           </motion.p>
 
           <motion.div
@@ -83,7 +109,11 @@ phrases={["Frontend Developer", "Creative Enthusiast"]}
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })}
+              onClick={() =>
+                document
+                  .querySelector("#projects")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
               className="flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-neon-blue to-neon-purple rounded-full font-semibold neon-glow transition-all duration-300"
             >
               <Eye size={20} />
@@ -95,8 +125,8 @@ phrases={["Frontend Developer", "Creative Enthusiast"]}
               whileTap={{ scale: 0.95 }}
               className="flex items-center gap-2 px-8 py-4 border-2 border-neon-orange text-neon-orange rounded-full font-semibold hover:bg-neon-orange hover:text-dark-bg transition-all duration-300"
             >
-              <Download size={20} />
-              Download Resume
+              {/* <Download size={20} /> */}
+              Glad you are here
             </motion.button>
           </motion.div>
         </motion.div>
