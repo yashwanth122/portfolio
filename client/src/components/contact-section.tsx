@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import AnimatedCharacter from "./animated-character";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -80,8 +81,8 @@ export default function ContactSection() {
           Let's <span className="gradient-text">Connect</span>
         </motion.h2>
 
-        <div className="max-w-4xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-3 gap-12 items-center">
             {/* Contact Info */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -122,6 +123,17 @@ export default function ContactSection() {
                   </motion.div>
                 ))}
               </div>
+            </motion.div>
+
+            {/* Animated Character */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="flex justify-center"
+            >
+              <AnimatedCharacter />
             </motion.div>
 
             {/* Contact Form */}
