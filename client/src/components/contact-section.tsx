@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Target } from "lucide-react";
 import { SiLinkedin } from "react-icons/si";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -47,7 +47,8 @@ export default function ContactSection() {
     onError: (error: any) => {
       toast({
         title: "Error",
-        description: error.message || "Failed to send message. Please try again.",
+        description:
+          error.message || "Failed to send message. Please try again.",
         variant: "destructive",
       });
     },
@@ -78,17 +79,18 @@ export default function ContactSection() {
       icon: SiLinkedin,
       title: "LinkedIn",
       value: "Connect with me",
-      href: "#",
+      href: "https://www.linkedin.com/in/yashwanth-chowdhary-thummala-7539991b3/",
+      Target: "_blank",
       color: "text-neon-blue",
     },
   ];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validate form data
     const result = contactFormSchema.safeParse(formData);
-    
+
     if (!result.success) {
       const firstError = result.error.errors[0];
       toast({
@@ -103,7 +105,9 @@ export default function ContactSection() {
     contactMutation.mutate(result.data);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -129,10 +133,13 @@ export default function ContactSection() {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-2xl font-bold mb-8 text-neon-blue">Get in Touch</h3>
+              <h3 className="text-2xl font-bold mb-8 text-neon-blue">
+                Get in Touch
+              </h3>
               <p className="text-lg text-gray-300 mb-8 leading-relaxed">
-                Ready to bring your creative vision to life? Let's collaborate and create something amazing together. 
-                I'm always excited to work on new and challenging projects.
+                Ready to bring your creative vision to life? Let's collaborate
+                and create something amazing together. I'm always excited to
+                work on new and challenging projects.
               </p>
 
               <div className="space-y-6">
@@ -164,8 +171,6 @@ export default function ContactSection() {
               </div>
             </motion.div>
 
-
-
             {/* Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
@@ -177,7 +182,9 @@ export default function ContactSection() {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium mb-2">Name</label>
+                    <label className="block text-sm font-medium mb-2">
+                      Name
+                    </label>
                     <Input
                       type="text"
                       name="name"
@@ -189,7 +196,9 @@ export default function ContactSection() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Email</label>
+                    <label className="block text-sm font-medium mb-2">
+                      Email
+                    </label>
                     <Input
                       type="email"
                       name="email"
@@ -202,10 +211,10 @@ export default function ContactSection() {
                   </div>
                 </div>
 
-
-
                 <div>
-                  <label className="block text-sm font-medium mb-2">Message</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Message
+                  </label>
                   <Textarea
                     name="message"
                     value={formData.message}
@@ -222,7 +231,9 @@ export default function ContactSection() {
                   disabled={contactMutation.isPending}
                   className="w-full bg-gradient-to-r from-neon-blue to-neon-purple hover:scale-105 transition-all duration-300 neon-glow"
                 >
-                  {contactMutation.isPending ? "Sending..." : (
+                  {contactMutation.isPending ? (
+                    "Sending..."
+                  ) : (
                     <>
                       <Send className="mr-2" size={16} />
                       Send Message
