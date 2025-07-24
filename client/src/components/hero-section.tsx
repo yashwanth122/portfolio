@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Download, Eye } from "lucide-react";
+import TypingAnimation from "./typing-animation";
 
 export default function HeroSection() {
   const floatingElements = [
@@ -54,12 +55,20 @@ export default function HeroSection() {
           </motion.h1>
 
           <motion.p
-            className="text-xl md:text-2xl mb-8 text-gray-300"
+            className="text-xl md:text-2xl mb-8 text-gray-300 h-16 flex items-center justify-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Motion Graphics Editor & Creative Developer
+            <TypingAnimation 
+              phrases={[
+                "Motion Graphics Editor",
+                "Creative Developer", 
+                "UI/UX Designer",
+                "Animation Specialist",
+                "Full Stack Developer"
+              ]}
+            />
           </motion.p>
 
           <motion.p

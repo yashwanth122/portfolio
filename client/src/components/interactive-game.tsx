@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useCallback } from "react";
 import { Play, Pause, RotateCcw, Trophy, Target } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ParticleSystem from "./particle-system";
 
 interface Bubble {
   id: number;
@@ -21,6 +22,8 @@ export default function InteractiveGame() {
   const [bubbles, setBubbles] = useState<Bubble[]>([]);
   const [timeLeft, setTimeLeft] = useState(30);
   const [gameStarted, setGameStarted] = useState(false);
+  const [particleActive, setParticleActive] = useState(false);
+  const [particlePosition, setParticlePosition] = useState({ x: 0, y: 0 });
 
   const colors = ['bg-neon-blue', 'bg-neon-purple', 'bg-neon-orange'];
   const colorValues = ['hsl(195, 100%, 50%)', 'hsl(258, 90%, 66%)', 'hsl(25, 95%, 53%)'];
@@ -61,7 +64,15 @@ export default function InteractiveGame() {
     setBubbles([]);
   };
 
-  const popBubble = (bubbleId: number) => {
+  const popBubble = (bubbleId: number, event: React.MouseEvent) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    setParticlePosition({ 
+      x: rect.left + rect.width / 2, 
+      y: rect.top + rect.height / 2 
+    });
+    setParticleActive(true);
+    setTimeout(() => setParticleActive(false), 100);
+    
     setBubbles(prev => prev.filter(b => b.id !== bubbleId));
     setScore(prev => prev + 10);
   };
@@ -275,7 +286,7 @@ export default function InteractiveGame() {
                     height: `${bubble.size}px`,
                     boxShadow: `0 0 20px ${colorValues[colors.indexOf(bubble.color)]}40`,
                   }}
-                  onClick={() => popBubble(bubble.id)}
+                  onClick={(e) => popBubble(bubble.id, e)}
                 >
                   <motion.div
                     animate={{ rotate: 360 }}
@@ -287,9 +298,11 @@ export default function InteractiveGame() {
             </AnimatePresence>
 
             {/* Particle effects for pops */}
-            <div className="absolute inset-0 pointer-events-none">
-              {/* Add sparkle effects here if needed */}
-            </div>
+            <ParticleSystem 
+              active={particleActive}
+              centerX={particlePosition.x}
+              centerY={particlePosition.y}
+            />
           </motion.div>
 
           <motion.p

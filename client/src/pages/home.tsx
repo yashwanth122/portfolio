@@ -7,10 +7,16 @@ import ProjectsSection from "@/components/projects-section";
 import EducationSection from "@/components/education-section";
 import ContactSection from "@/components/contact-section";
 import Footer from "@/components/footer";
+import AnimatedCursor from "@/components/animated-cursor";
+import FloatingShapes from "@/components/floating-shapes";
+import ScrollProgress from "@/components/scroll-progress";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-dark-bg text-white">
+      <ScrollProgress />
+      <AnimatedCursor />
+      <FloatingShapes />
       <Navigation />
       <HeroSection />
       <AboutSection />
