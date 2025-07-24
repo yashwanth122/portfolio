@@ -54,7 +54,7 @@ export default function Footer() {
           className="text-center mt-8 pt-8 border-t border-gray-800"
         >
           <p className="text-gray-400">
-            © 2024 Thummala Yashwanth Chowdhary. All rights reserved.
+            © 2025 Thummala Yashwanth Chowdhary. All rights reserved.
           </p>
         </motion.div>
       </div>
