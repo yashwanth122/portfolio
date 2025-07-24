@@ -5,19 +5,25 @@ export default function ProjectsSection() {
   const projects = [
     {
       title: "TrafficCone Sign Classification",
-      description: "Built a model for traffic sign recognition with deep learning that guarantees people's safety and security. Created using Python, HTML, CSS and Dataset with proven real-world impact.",
-      image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400",
+      description:
+        "Built a model for traffic sign recognition with deep learning that guarantees people's safety and security. Created using Python, HTML, CSS and Dataset with proven real-world impact.",
+      image:
+        "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400",
       icon: TrafficCone,
       technologies: ["Python", "Deep Learning", "HTML/CSS"],
       iconColor: "text-neon-blue",
+      link: "https://github.com/yashwanth122",
     },
     {
       title: "User Management System",
-      description: "Built a comprehensive user management system using React.js that allows users to login and register. Utilized Redux for efficient data handling and seamless integration of complex features.",
-      image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400",
+      description:
+        "Built a comprehensive user management system using React.js that allows users to login and register. Utilized Redux for efficient data handling and seamless integration of complex features.",
+      image:
+        "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400",
       icon: Users,
       technologies: ["React.js", "Redux", "JavaScript"],
       iconColor: "text-neon-purple",
+      link: "https://github.com/yashwanth122",
     },
   ];
 
@@ -56,7 +62,9 @@ export default function ProjectsSection() {
 
               <div className="p-8">
                 <div className="flex items-center mb-4">
-                  <project.icon className={`text-2xl ${project.iconColor} mr-3`} />
+                  <project.icon
+                    className={`text-2xl ${project.iconColor} mr-3`}
+                  />
                   <h3 className="text-2xl font-bold">{project.title}</h3>
                 </div>
 
@@ -73,11 +81,11 @@ export default function ProjectsSection() {
                       transition={{ duration: 0.4, delay: techIndex * 0.1 }}
                       viewport={{ once: true }}
                       className={`px-3 py-1 rounded-full text-sm ${
-                        techIndex % 3 === 0 
-                          ? 'bg-neon-blue/20 text-neon-blue' 
-                          : techIndex % 3 === 1 
-                          ? 'bg-neon-purple/20 text-neon-purple'
-                          : 'bg-neon-orange/20 text-neon-orange'
+                        techIndex % 3 === 0
+                          ? "bg-neon-blue/20 text-neon-blue"
+                          : techIndex % 3 === 1
+                          ? "bg-neon-purple/20 text-neon-purple"
+                          : "bg-neon-orange/20 text-neon-orange"
                       }`}
                     >
                       {tech}
@@ -85,13 +93,16 @@ export default function ProjectsSection() {
                   ))}
                 </div>
 
-                <motion.button
+                <motion.a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ x: 5 }}
                   className={`flex items-center ${project.iconColor} hover:text-white transition-colors duration-300`}
                 >
                   <span className="mr-2">View Project</span>
                   <ArrowRight size={16} />
-                </motion.button>
+                </motion.a>
               </div>
             </motion.div>
           ))}
