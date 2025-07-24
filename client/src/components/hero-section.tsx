@@ -61,13 +61,7 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <TypingAnimation 
-              phrases={[
-                "Motion Graphics Editor",
-                "Creative Developer", 
-                "UI/UX Designer",
-                "Animation Specialist",
-                "Full Stack Developer"
-              ]}
+phrases={["Frontend Developer", "Creative Enthusiast"]}
             />
           </motion.p>
 
