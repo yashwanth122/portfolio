@@ -22,7 +22,7 @@ export default function Footer() {
             <div className="text-2xl font-bold gradient-text mb-2">
               Thummala Yashwanth Chowdhary
             </div>
-            <p className="text-gray-400">Motion Graphics Editor & Creative Developer</p>
+            <p className="text-gray-400">Frontend Developer & Creative Enthusiast</p>
           </motion.div>
 
           <motion.div
