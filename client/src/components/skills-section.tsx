@@ -5,23 +5,28 @@ import {
   Clock, 
   Brain,
   Database,
-  Code2
+  Code2,
+  Lightbulb,
+  RotateCw,
+  Users,
+  MessageSquare
 } from "lucide-react";
-import { SiPython, SiReact, SiJavascript } from "react-icons/si";
+import { SiPython, SiReact, SiJavascript, SiCanva } from "react-icons/si";
 
 export default function SkillsSection() {
   const technicalSkills = [
-    { name: "Python", level: 85, icon: SiPython, color: "text-neon-blue" },
-    { name: "React.js", level: 80, icon: SiReact, color: "text-neon-blue" },
-    { name: "JavaScript", level: 75, icon: SiJavascript, color: "text-neon-orange" },
-    { name: "MySQL", level: 70, icon: Database, color: "text-neon-purple" },
+    { name: "Python", icon: SiPython, color: "text-neon-blue" },
+    { name: "React.js", icon: SiReact, color: "text-neon-blue" },
+    { name: "JavaScript", icon: SiJavascript, color: "text-neon-orange" },
+    { name: "MySQL", icon: Database, color: "text-neon-purple" },
+    { name: "Canva", icon: SiCanva, color: "text-neon-purple" },
   ];
 
   const softSkills = [
-    { name: "Communication", icon: MessageCircle, color: "text-neon-blue", description: "Clear & effective" },
-    { name: "Adaptability", icon: RefreshCw, color: "text-neon-purple", description: "Quick learner" },
-    { name: "Time Management", icon: Clock, color: "text-neon-orange", description: "Efficient delivery" },
-    { name: "Critical Thinking", icon: Brain, color: "text-neon-blue", description: "Problem solver" },
+    { name: "Creative Thinking", icon: Lightbulb, color: "text-neon-blue", description: "Innovative solutions" },
+    { name: "Experimentation & Iteration", icon: RotateCw, color: "text-neon-purple", description: "Continuous improvement" },
+    { name: "Communication & Collaboration", icon: Users, color: "text-neon-orange", description: "Team player" },
+    { name: "Openness to Feedback", icon: MessageSquare, color: "text-neon-blue", description: "Growth mindset" },
   ];
 
   const languages = ["English", "Telugu", "Hindi"];
@@ -48,7 +53,7 @@ export default function SkillsSection() {
             viewport={{ once: true }}
           >
             <h3 className="text-2xl font-bold mb-8 text-neon-blue">Technical Skills</h3>
-            <div className="space-y-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
               {technicalSkills.map((skill, index) => (
                 <motion.div
                   key={skill.name}
@@ -57,21 +62,10 @@ export default function SkillsSection() {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
                   whileHover={{ scale: 1.05 }}
-                  className="glass-effect p-6 rounded-xl"
+                  className="glass-effect p-6 rounded-xl text-center"
                 >
-                  <div className="flex items-center mb-4">
-                    <skill.icon className={`text-3xl ${skill.color} mr-4`} />
-                    <h4 className="text-xl font-semibold">{skill.name}</h4>
-                  </div>
-                  <div className="w-full bg-dark-tertiary rounded-full h-2">
-                    <motion.div
-                      className="bg-gradient-to-r from-neon-blue to-neon-purple h-2 rounded-full"
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${skill.level}%` }}
-                      transition={{ duration: 1, delay: 0.5 }}
-                      viewport={{ once: true }}
-                    />
-                  </div>
+                  <skill.icon className={`mx-auto text-4xl ${skill.color} mb-4`} />
+                  <h4 className="text-xl font-semibold">{skill.name}</h4>
                 </motion.div>
               ))}
             </div>
